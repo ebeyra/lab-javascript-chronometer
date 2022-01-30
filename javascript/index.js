@@ -22,7 +22,10 @@ function printMinutes() {
 }
 
 function printSeconds() {
-  // ... your code goes here
+  let rawSec = chronometer.getSeconds();
+  let formSec = chronometer.computeTwoDigitNumber(rawSec);
+  secDecElement.innerHTML = formSec[0];
+  secUniElement.innerHTML = formSec[1];
 }
 
 // ==> BONUS
@@ -56,7 +59,19 @@ function setResetBtn() {
 
 // Start/Stop Button
 btnLeftElement.addEventListener('click', () => {
-  // ... your code goes here
+  switch (btnLeftElement.innerHTML) {
+    case 'START':
+      btnLeftElement.innerHTML = 'STOP';
+      btnRightElement.innerHTML = 'SPLIT';
+      chronometer.start();
+      printSeconds();
+      break;
+    case 'STOP':
+      btnLeftElement.innerHTML = 'START';
+      btnRightElement.innerHTML = 'RESET';
+      chronometer.stop();
+      break;
+  }
 });
 
 // Reset/Split Button
